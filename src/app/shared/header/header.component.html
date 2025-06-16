@@ -1,0 +1,29 @@
+<p-overlayPanel #userOverlay [dismissable]="true">
+    <div class="user-overlay-content">
+        <p>{{ username }}</p>
+        <p>{{ email }}</p>
+        <button (click)="logout()">Logout</button>
+    </div>
+</p-overlayPanel>
+
+<header class="header m-0 p-0">
+    <div class="navbar">
+        <div class="logo">ManageX</div>
+
+        <nav class="nav-right">
+            <a routerLink="/home/home" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}">Home</a>
+            <a routerLink="/home/dashOG" routerLinkActive="active-link"
+                [routerLinkActiveOptions]="{exact: true}">Dashboard</a>
+
+            <a routerLink="/home/dashboard" routerLinkActive="active-link"
+                [routerLinkActiveOptions]="{exact: true}">User</a>
+            <a routerLink="/home/tasklist" routerLinkActive="active-link"
+                [routerLinkActiveOptions]="{exact:true}">Task</a>
+            <a routerLink="/home/mytask" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}">My
+                Task</a>
+            <div class=" avatar-preview-login" (click)="userOverlay.toggle($event)">
+                <img [src]="photo" onerror="this.src='Portrait_Placeholder.png'" class="avatar-img" alt="Avatar" />
+            </div>
+        </nav>
+    </div>
+</header>

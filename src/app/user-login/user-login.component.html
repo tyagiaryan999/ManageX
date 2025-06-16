@@ -1,0 +1,59 @@
+<p-toast></p-toast>
+<p-dialog header="Enter OTP" [(visible)]="showOtpDialog" [modal]="true" [closable]="false" [style]="{ width: '300px' }">
+  <p>Please enter the OTP sent to your Email.</p>
+  <input type="text" [(ngModel)]="enteredOtp" maxlength="9" pInputText style="width: 100%;" placeholder="Enter OTP" />
+  <!-- <div style="margin-top: 1rem; text-align: left;">
+    <button pButton type="button" label="Close" (click)="closeDialog()"></button>
+  </div>
+
+  <div style="margin-top: 1rem; text-align: right;">
+    <button pButton type="button" label="Verify" (click)="verifyOtp()"></button>
+  </div> -->
+  <div style="margin-top: 1rem; display: flex; justify-content: space-between;">
+    <button pButton type="button" label="Close" (click)="closeDialog()"></button>
+    <button pButton type="button" label="Verify" (click)="verifyOtp()"></button>
+  </div>
+</p-dialog>
+
+<div class="parent">
+  <div class="image">
+    <div class="heading">
+      <h1 n>Welcome!</h1>
+    </div>
+
+    <div class="logo-image">
+      <img src="logo.png" alt="logo" />
+    </div>
+  </div>
+
+  <div class="login-container">
+    <div class="lang-select">
+      🌐 <label for="langSelect" n>Language:</label>
+      <select id="langSelect">
+        <option value="en" n="@@lang-en">English</option>
+        <option value="hi" n="@@lang-hi">हिंदी</option>
+      </select>
+    </div>
+
+    <div class="form-box">
+      <div class="form-details">
+        <h2 n>Log in</h2>
+
+        <form [formGroup]="userlogin">
+          <input type="text" placeholder="Email" n-placeholder="@@emailPlaceholder" formControlName="email" id="email"
+            [ngClass]="{'Invalid': isFieldInvalid('email')}" />
+
+          <input type="password" formControlName="password" placeholder="Password" n-placeholder="@@passwordPlaceholder"
+            [ngClass]="{'Invalid': isFieldInvalid('password')}" />
+
+          <button (click)="onlogin()" n>Login</button>
+        </form>
+
+        <p class="footer-text" n>
+          No Account
+          <a href="/registration">Register</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

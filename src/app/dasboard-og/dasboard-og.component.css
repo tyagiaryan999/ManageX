@@ -1,0 +1,160 @@
+.dashboard-wrapper {
+    /* background: linear-gradient(to bottom right, #eef2ff, #dde5f0); */
+    min-height: 100vh;
+    padding: 2rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Card container */
+.dashboard-card {
+    padding: 1.5rem;
+    border-radius: 1.5rem;
+    background-color: #ffffff;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.06);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    border-left: 6px solid transparent;
+}
+
+/* Hover effect */
+.dashboard-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+::ng-deep .dashboard-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+/* Icon Circle Styling */
+.icon-circle {
+    border-radius: 50%;
+    padding: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    color: white;
+    font-size: 1.5rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Text Styling */
+.dashboard-card h3 {
+    margin: 0;
+    font-size: 1.125rem;
+    color: #334155;
+}
+
+.dashboard-card p {
+    margin: 0.25rem 0 0;
+    font-size: 1.75rem;
+    font-weight: bold;
+    color: #0f172a;
+}
+
+/* Different color themes
+.bg-blue {
+    border-left-color: #3b82f6;
+}
+
+.bg-green {
+    border-left-color: #10b981;
+}
+
+.bg-yellow {
+    border-left-color: #facc15;
+}
+
+.bg-red {
+    border-left-color: #ef4444;
+}
+
+/* Icon backgrounds (same as borders) */
+/* .icon-blue {
+    background: linear-gradient(to top left, #60a5fa, #3b82f6);
+}
+
+.icon-green {
+    background: linear-gradient(to top left, #6ee7b7, #10b981);
+}
+
+.icon-yellow {
+    background: linear-gradient(to top left, #fde68a, #facc15);
+    color: #92400e;
+}
+
+.icon-red {
+    background: linear-gradient(to top left, #fca5a5, #ef4444);
+} */
+.bg-blue {
+    border-left: 6px solid #3b82f6;
+}
+
+.bg-green {
+    border-left: 6px solid #10b981;
+}
+
+.bg-yellow {
+    border-left: 6px solid #facc15;
+}
+
+.bg-purple {
+    border-left: 6px solid #8b5cf6;
+}
+
+.icon-blue {
+    background: #e0f2fe;
+    color: #3b82f6;
+}
+
+.icon-green {
+    background: #dcfce7;
+    color: #10b981;
+}
+
+.icon-yellow {
+    background: #fef9c3;
+    color: #f59e0b;
+}
+
+.icon-purple {
+    background: #ede9fe;
+    color: #8b5cf6;
+}
+
+.bg-gray {
+    border-left: 6px solid #9ca3af;
+
+}
+
+.icon-gray {
+    background: #f3f4f6;
+
+    color: #6b7280;
+
+}
+
+.bg-red {
+    border-left: 6px solid #ef4444;
+}
+
+.icon-red {
+    background: #fee2e2;
+    color: #ef4444;
+}
+
+.dashboard-heading {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 1.5rem;
+}
+
+.dashboard-grid {
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}

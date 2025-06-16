@@ -1,0 +1,61 @@
+<div class="container-fluid m-0 p-0">
+    <div class="row m-0 p-0 d-flex w-100 custom-bg">
+        <div class="col m-0 p-3">
+            <h2 style="font-size: medium;">Total Task : {{totalRecords}}</h2>
+        </div>
+        <div class="col m-0 p-1 text-end">
+            <button class="btn btn-secondary btn-white m-2 btn-sm" routerLink="/home/tasklist/add">Add Task</button>
+        </div>
+    </div>
+
+    <div class="row m-0 p-0 w-100">
+        <div class="col m-0 p-0 table-responsive">
+            <p-table [value]="taskData" [lazy]="true" (onLazyLoad)="loadTasksLazy($event)" [paginator]="true"
+                [rows]="rows" [totalRecords]="totalRecords" [rowsPerPageOptions]="[10,20,50]" paginatorPosition="bottom"
+                [tableStyle]="{'min-width': '100vw'}">
+
+
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th pSortableColumn="task_name" style="width:6%">Task Name <p-sortIcon field="task_name" /></th>
+                        <th pSortableColumn="assignedToUser" style="width:5%">Assigned To <p-sortIcon
+                                field="assignedToUser" /></th>
+                        <th pSortableColumn="category" style="width:5%">Category <p-sortIcon field="category" /></th>
+                        <th pSortableColumn="work_status" style="width:6%">Work Status <p-sortIcon
+                                field="work_status" />
+                        </th>
+                        <th pSortableColumn="createdAt" style="width:7%">Assigned Date <p-sortIcon field="createdAt" />
+                        </th>
+                        <th pSortableColumn="dueDate" style="width:6%">Due Date <p-sortIcon field="dueDate" /></th>
+                        <th pSortableColumn="work_description" style="width:10%">Description <p-sortIcon
+                                field="work_description" /></th>
+                        <th style="width:8%">Action</th>
+                    </tr>
+                </ng-template>
+
+
+                <ng-template pTemplate="body" let-task>
+                    <tr class="table-row">
+                        <td>{{ task.task_name }}</td>
+                        <td>{{ task.assignedToUser }}</td>
+                        <td>{{ task.category }}</td>
+                        <td>{{ task.work_status }}</td>
+                        <td>{{ task.createdAt | date:'yyyy-MM-dd' }}</td>
+                        <td>{{ task.dueDate | date:'yyyy-MM-dd' }}</td>
+                        <td>{{ task.work_description }}</td>
+                        <td>
+
+                            <p-button icon="pi pi-pencil" styleClass="p-button-sm p-button-text"
+                                (click)="navigateToEdit(task)" pTooltip="Edit" tooltipPosition="top">
+                            </p-button>
+                            <p-button icon="pi pi-trash" styleClass="p-button-sm p-button-danger p-button-text"
+                                (click)="is_Deleted($event, task)" pTooltip="Delete" tooltipPosition="top">
+                            </p-button>
+                        </td>
+                    </tr>
+                </ng-template>
+
+            </p-table>
+        </div>
+    </div>
+</div>

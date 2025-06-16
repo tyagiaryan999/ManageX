@@ -1,0 +1,55 @@
+.form-container {
+  width: 100%;
+  max-width: 600px;
+  margin: 3rem auto;
+}
+
+.form-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.form-row label {
+  width: 150px;
+  font-weight: 500;
+  padding-top: 0.5rem;
+}
+
+.form-row input,
+.form-row select {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  height: 2.75rem;
+  box-sizing: border-box;
+}
+
+.form-row textarea {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  min-height: 120px;
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+.form-row .p-autoComplete {
+  flex: 1;
+}
+
+.button-wrapper {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+button[type='submit'] {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 6px;
+}

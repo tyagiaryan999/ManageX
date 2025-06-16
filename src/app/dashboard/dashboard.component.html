@@ -1,0 +1,308 @@
+<p-toast key="dashboard"> </p-toast>
+<p-toast></p-toast>
+<p-overlayPanel #userOverlay [dismissable]="true">
+  <!-- [showCloseIcon]="true"  -->
+  <div class="user-overlay-content">
+    <p> {{ loggedInUsername}}</p>
+    <p>{{ loggedInUseremail}}</p>
+    <div class="user-overlay-content-button">
+      <p-button label="Edit" [outlined]="true" (click)="edituser_operation(this.loggedInUserdata);userOverlay.hide()" />
+      <p-button (click)="logout() ;userOverlay.hide()" label="Logout" severity="danger" [outlined]="true" />
+    </div>
+    <!-- <p-button label="Edit Profile" (click)="edituser_operation(loggedInUserdata); userOverlay.hide()"></p-button> 
+     <p-button label="Logout" (click)="logout(); userOverlay.hide()"></p-button>   -->
+  </div>
+</p-overlayPanel>
+
+<p-confirmDialog closable="false">
+
+</p-confirmDialog>
+<!-- <header class="header">
+  <nav class="navbar">
+    <h1 class="logo">Employee Data</h1>
+    <ul class="nav-links">
+     
+      <li></li>
+      <li>
+        <div class="avatar-preview-login">
+          <img [src]="loggedInUserPhoto" onerror="this.src='Portrait_Placeholder.png'" alt="Avatar Preview"
+            class="avatar-img">
+          <div class="username-label">
+            <a (click)="userOverlay.toggle($event)">{{loggedInUsername}}</a>
+          </div>
+                </div>
+
+      </li>
+    </ul>
+  </nav>
+</header> -->
+<div class="dashboard-wrapper">
+
+
+
+  <p-dialog header="{{mode}} Profile" [(visible)]="visible" [style]="{ width: '35rem' }" [modal]="true">
+
+    <span class="p-text-secondary block mb-8"> </span>
+    <div class="form-group">
+      <form [formGroup]="userFormValue" name="register">
+        <!-- <div>
+          <input type="file" name="userImage" (change)="selectImage($event)">
+        </div>
+   -->
+        <input type="file" name="userImage" #fileInput (change)="selectImage($event)" style="display: none;"
+          accept="image/*" />
+        <div class="dialogboximage-Div" (click)="fileInput.click()" style="cursor: pointer;">
+          <div class="center-wrapper">
+            <!-- <img [src]="imagePreview || 'Portrait_Placeholder.png'" alt="Avatar Preview"class="dialogbox-image"/> -->
+            <img [src]="imagePreview" onerror="this.src='Portrait_Placeholder.png'" alt="Avatar Preview"
+              class="dialogbox-image">
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <!-- <label for="field">UserName</label> -->
+
+          <input type="text" id="field" formControlName="name" required [ngClass]="{'invalid': isFieldInvalid('name')}"
+            pInputText pTooltip="Username" [tooltipOptions]="tooltipOptions" placeholder="Enter your Username" />
+
+          <!-- <input type="text" id="field" formControlName="name" required  [ngClass]="{'invalid': isFieldInvalid('name')}"/> -->
+          <!-- <small *ngIf="isFieldInvalid('name')" class="error-text">Username is required</small> -->
+        </div>
+
+        <div class="form-group">
+          <!-- <label for="password">Password</label> -->
+          <input type="password" id="field" formControlName="password" required
+            [ngClass]="{'invalid': isFieldInvalid('password')}" pInputText pTooltip="Password"
+            [tooltipOptions]="tooltipOptions" placeholder="Enter your Password" />
+          <!-- <input type="text" id="password" type="password" formControlName="password" required [ngClass]="{'invalid': isFieldInvalid('password')}"/> -->
+          <!-- <small *ngIf="isFieldInvalid('password')" class="error-text">Password is required</small> -->
+        </div>
+
+        <div class="form-group">
+          <!-- <label for="age">Age</label> -->
+          <input type="number" id="age" formControlName="age" required [ngClass]="{'invalid': isFieldInvalid('age')}"
+            pInputText pTooltip="Age" [tooltipOptions]="tooltipOptions" placeholder="Enter your Age" />
+
+
+          <!-- <input type="text" id="age" formControlName="age" required [ngClass]="{'invalid': isFieldInvalid('age')}"/> -->
+          <!-- <small *ngIf="isFieldInvalid('age')" class="error-text">Age is required</small> -->
+        </div>
+
+        <div class="form-group">
+          <!-- <label for="email">Email</label> -->
+          <input type="email" id="email" [disabled]="mode === 'Edit'" formControlName="email" required
+            [ngClass]="{'invalid': isFieldInvalid('email')}" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+            pInputText pTooltip="Email" [tooltipOptions]="tooltipOptions" placeholder="Enter your Email" />
+
+          <!-- <input type="email" id="email" formControlName="email" required  [ngClass]="{'invalid': isFieldInvalid('email')}"/> -->
+          <!-- <small *ngIf="isFieldInvalid('email')" class="error-text">Email is required</small> -->
+        </div>
+
+        <div class="form-group">
+          <!-- <label for="number">Number</label> -->
+          <input type="tel" id="number" formControlName="number" pattern="^(?:\+91|91|0)?[6-9]\d{9}$" required
+            maxlength="10" required [ngClass]="{'invalid': isFieldInvalid('number')}" pInputText pTooltip="Number"
+            [tooltipOptions]="tooltipOptions" placeholder="Enter your Number" />
+
+          <!-- <input type="tel" id="number" formControlName="number" pattern="^(?:\+91|91|0)?[6-9]\d{9}$" required maxlength="10"
+        inputmode="numeric" [ngClass]="{'invalid': isFieldInvalid('number')}" /> -->
+          <!-- <small *ngIf="isFieldInvalid('number')" class="error-text">Number is required</small> -->
+        </div>
+
+        <div class="form-group">
+          <!-- <label for="address">Address</label> -->
+          <input type="text" id="address" formControlName="address" required
+            [ngClass]="{'invalid': isFieldInvalid('address')}" pInputText pTooltip="Address"
+            [tooltipOptions]="tooltipOptions" placeholder="Enter your Address" />
+          <!-- <input type="text" id="address" formControlName="address"  [ngClass]="{'invalid': isFieldInvalid('address')}"/> -->
+          <!-- <small *ngIf="isFieldInvalid('address')" class="error-text">Address is required</small> -->
+        </div>
+
+        <div class=" dialogbutton">
+          <p-button type="Cancel" (click)="cancelButton()" label="Cancel" severity="secondary"></p-button>
+          <p-button type="submit" label="Save" (click)="mode == 'Add'?addUser():Update_User(selectImage)"
+            sclass="save-button"></p-button>
+        </div>
+      </form>
+    </div>
+
+  </p-dialog>
+
+  <div class="row m-0 p-0 w-100">
+    <div class="col m-0 p-0 ">
+      <p-dataView #dv [value]="allUsers" [rows]="4" [paginator]="false">
+        <ng-template pTemplate="header">
+          <div class="custom-header">
+            <!-- Total Users Text placed at the top -->
+            <div class="total-count">Total Users: {{ totalRecords }}
+              <input type="text" placeholder="Search user" [(ngModel)]="searchTerm" style="font-size: large;"
+                (input)="onSearch()">
+              <!-- <button pButton label="Search" icon="pi pi-search" (click)="onSearch()"
+              style="margin-left: 10px;font-size:12px !important ;padding:6px 10px ;"></button> -->
+            </div>
+
+            <!-- Layout Switcher on the left -->
+
+
+            <!-- Add Button on the right -->
+            <div class="adduserbutton">
+              <p-button (click)="showDialog()" class="add-button" label="Add"></p-button>
+              <div class="layout-switcher">
+                <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+              </div>
+
+            </div>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="list" let-user>
+
+          <!-- <p-table [value]="user" stripedRows [tableStyle]="{ 'min-width': '100vw' }"> -->
+          <p-table [value]="allUsers" stripedRows styleClass="w-full" [scrollable]="false"
+            [responsiveLayout]="'scroll'">
+
+            <ng-template pTemplate="header">
+              <tr>
+                <th style="width: 3%">Profile</th>
+                <th style="width: 8%">Username</th>
+                <th style="width:3%">Age</th>
+                <th style="width:10%">Email</th>
+                <th style="width:8%">Number</th>
+                <th style="width:10%">Address</th>
+                <th style="width:10%">Action</th>
+
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-user>
+              <tr>
+                <td>
+                  <div class="table-avatar">
+                    <img src="{{imagePath+user.user_image}}" onerror="this.src='Portrait_Placeholder.png'"
+                      alt="Avatar Preview" class="table-img">
+                  </div>
+                </td>
+                <td>{{ user.user_name }}</td>
+                <td>{{ user.age }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.phone_number}}</td>
+                <td>{{ user.address}}</td>
+
+
+
+                <td>
+                  <div class="flex gap-2">
+                    <p-button icon="pi pi-pencil" styleClass="p-button-sm p-button-text"
+                      (click)="edituser_operation(user)" pTooltip="Edit" tooltipPosition="top">
+                    </p-button>
+                    <p-button icon="pi pi-trash" styleClass="p-button-sm p-button-danger p-button-text"
+                      (click)="deleteUser($event, user)" pTooltip="Delete" tooltipPosition="top">
+                    </p-button>
+                    <!-- <p-button icon="pi pi-exclamation-circle" styleClass="p-button-sm p-button-raised "
+                      (click)="userActivityInfo(user)" pTooltip="Info" tooltipPosition="top">
+                    </p-button> -->
+
+                    <!-- <p-button icon="pi pi-exclamation-circle" styleClass="p-button-sm p-button-success p-button-text"
+                      (click)="userActivityInfo(user)" pTooltip="Info" tooltipPosition="top">
+                    </p-button> -->
+
+                    <p-button icon="pi pi-exclamation-circle" styleClass="p-button-sm p-button-success p-button-text"
+                      (click)="openDateSelection(user)" pTooltip="Info" tooltipPosition="top">
+                    </p-button>
+
+                    <div *ngIf="showDatePickerForUser === user.email">
+                      <p-calendar [(ngModel)]="selectedDate" (onSelect)="onDateSelected(user)" [showIcon]="true"
+                        placeholder="Select Date">
+                      </p-calendar>
+                      <button (click)="cancelDateSelection()">Cancel</button>
+                    </div>
+                    <!-- <p-button [outlined]="false" (click)="edituser_operation(user)" icon="pi pi-pencil"></p-button>
+                  <p-button severity="danger" [outlined]="false" icon="pi pi-trash"
+                    (click)="deleteUser($event, user)"></p-button> -->
+                  </div>
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </ng-template>
+
+        <ng-template pTemplate="grid" let-user>
+          <div class="grid-container">
+            <div class="grid-item" *ngFor="let user of allUsers">
+              <div class="user-card">
+
+                <!-- Image Section -->
+                <div class="image-container">
+                  <img [src]="imagePath + user.user_image" class="user-image" alt="Profile"
+                    onerror="this.onerror=null; this.src='Portrait_Placeholder.png';" />
+                </div>
+
+                <!-- Info Section -->
+                <div class="pt-4">
+                  <div class="user-info"
+                    style="display: flex; justify-content: center; align-items: center; gap: 0.5rem;">
+                    <div class="text-l text-900">
+                      <b>{{ user.user_name }}&nbsp;</b>
+                    </div>
+                    <i class="pi pi-pencil" style="cursor: pointer; font-size: 0.9rem; color: #555;"
+                      (click)="edituser_operation(user)" pTooltip="Edit User" tooltipPosition="bottom"></i>
+
+                  </div>
+                  <!-- <div class="text-l text-900 "><b> Email:</b> {{ user.email }}</div>
+                  <div class="text-l text-900 "> <b>Age:</b>{{ user.age }}</div>
+                  <div class="text-l text-900 "><b>Phone: </b> {{ user.phone_number }}</div>
+                  <div class="text-l text-900"><b>Address:</b>  {{ user.address }}</div> -->
+
+
+
+                  <!-- <div class="flex gap-2">
+                  <p-button
+                    label="Edit"
+                    [outlined]="true"
+                    (click)="edituser_operation(user)"
+                    icon="pi pi-pencil"
+                  ></p-button>
+                  <p-button
+                    label="Delete"
+                    severity="danger"
+                    [outlined]="true"
+                    icon="pi pi-trash"
+                    (click)="deleteUser($event, user)"
+                  ></p-button>
+              
+                 
+                 </div> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="compact" let-user>
+          <div class="compact-item flex align-items-center justify-content-between p-2 border-bottom-1 surface-border">
+            <div class="flex align-items-center gap-3">
+              <img [src]="imagePath + user.user_image" onerror="this.onerror=null; this.src='Portrait_Placeholder.png';"
+                class="compact-img" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover;">
+              <div>
+                <div class="font-medium text-sm">{{ user.user_name }}</div>
+                <div class="text-xs text-color-secondary">{{ user.email }}</div>
+              </div>
+            </div>
+            <div class="flex gap-2">
+              <p-button icon="pi pi-pencil" styleClass="p-button-sm p-button-text" (click)="edituser_operation(user)"
+                pTooltip="Edit" tooltipPosition="top"></p-button>
+              <p-button icon="pi pi-trash" styleClass="p-button-sm p-button-danger p-button-text"
+                (click)="deleteUser($event, user)" pTooltip="Delete" tooltipPosition="top"></p-button>
+            </div>
+          </div>
+        </ng-template>
+
+      </p-dataView>
+    </div>
+
+  </div>
+  <div class="row m-0 p-0 w-100 d-flex">
+    <div class="col d-flex justify-content-end">
+      <p-paginator (onPageChange)="onPageChange($event)" [first]="first" [rows]="rows" [totalRecords]="totalRecords"
+        [rowsPerPageOptions]="[10, 20, 30]" styleClass="custom-table" />
+    </div>
+  </div>
+</div>

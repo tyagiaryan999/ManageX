@@ -1,0 +1,94 @@
+<!-- 
+<p-dialog header="Enter OTP" [(visible)]="showOtpDialog" [modal]="true" [closable]="false" [style]="{ width: '300px' }">
+  <p>Please enter the OTP sent to your registered contact.</p>
+  <input type="text" [(ngModel)]="enteredOtp" maxlength="6" pInputText style="width: 100%;" placeholder="Enter OTP" />
+  <div style="margin-top: 1rem; text-align: right;">
+    <button pButton type="button" label="Verify"></button>
+  </div>
+</p-dialog> -->
+<p-toast></p-toast>
+<div class="parent">
+  <div class="Logo">
+    <!-- <h1>Sign Up</h1> -->
+    <div class="logo-image">
+      <img [src]="'logo.png'" alt="logo">
+    </div>
+  </div>
+  <div class="form-container">
+    <div class="form-box">
+
+      <div class="form-details">
+        <h2>Create Your Account</h2>
+        <!-- <div class="avatar-preview" *ngIf="imagePreview">
+      <div class="center-wrapper">
+         <img [src]="imagePreview" alt="Avatar Preview" class="avatar-img" /> -->
+        <!-- </div>
+    </div> -->
+
+
+        <form [formGroup]="userFormValue" (ngSubmit)="onsubmit()" name="register">
+          <input type="file" name="userImage" #fileInput (change)="selectImage($event)" style="display: none;"
+            accept="image/*" />
+          <div class="avatar-preview" (click)="fileInput.click()" style="cursor: pointer;">
+            <div class="center-wrapper">
+              <img [src]="imagePreview || 'Portrait_Placeholder.png'" alt="Avatar Preview" class="avatar-img" />
+            </div>
+          </div>
+
+          <!-- <div>
+        <input type="file" name="userImage" (change)="selectImage($event)">
+      </div> -->
+
+          <!-- <label for="name">UserName</label> -->
+          <input class="NameFileds" formControlName="name" type="text" id="name" placeholder="Enter your Username"
+            required [ngClass]="{'Invalid':isFieldInvalid('name')}" pInputText pTooltip="Name"
+            [tooltipOptions]="tooltipOptions" />
+
+          <!-- <small *ngIf="isFieldInvalid('name')" class="error"> Name is required</small> -->
+
+          <!-- <label for="user_password">Password</label> -->
+          <input type="password" id="user_password" placeholder="Enter Your Password" formControlName="password"
+            required [ngClass]="{'Invalid':isFieldInvalid('password')}" pInputText pTooltip="Password"
+            [tooltipOptions]="tooltipOptions" />
+          <!-- <small *ngIf="isFieldInvalid('password')" class="error"> Password is required</small> -->
+
+          <!-- <label for="age">Age</label> -->
+          <input type="number" id="age" placeholder="Enter your age" formControlName="age" required
+            [ngClass]="{'Invalid':isFieldInvalid('age')}" pInputText pTooltip="Age" [tooltipOptions]="tooltipOptions" />
+          <!-- <small *ngIf="isFieldInvalid('age')" class="error"> Age is required</small> -->
+
+
+          <!-- <label for="email">Email</label> -->
+          <input type="email" formControlName="email" id="email" placeholder="Enter your email"
+            pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required
+            [ngClass]="{'Invalid':isFieldInvalid('email')}" pInputText pTooltip="Email"
+            [tooltipOptions]="tooltipOptions" />
+          <!-- <small *ngIf="isFieldInvalid('email')" class="error"> Email is required</small> -->
+
+
+          <!-- <label for="number">Phone Number</label> -->
+          <input type="tel" id="number" formControlName="number" pattern="^(?:\+91|91|0)?[6-9]\d{9}$" required
+            maxlength="10" inputmode="numeric" placeholder="Enter your Number"
+            [ngClass]="{'Invalid': isFieldInvalid('number')}" pInputText pTooltip="Number"
+            [tooltipOptions]="tooltipOptions" />
+          <!-- <small *ngIf="isFieldInvalid('number')" class="error"> Number is required</small> -->
+
+
+          <!-- <label for="address">Address</label> -->
+          <input type="text" formControlName="address" id="address" placeholder="Enter your address" required=""
+            [ngClass]="{'Invalid':isFieldInvalid('address')}" pInputText pTooltip="Address"
+            [tooltipOptions]="tooltipOptions" />
+          <!-- <small *ngIf="isFieldInvalid('address')" class="error"> Address is required</small> -->
+
+
+          <button type="submit">Register</button>
+          <p class="footer-text">
+            Click here to login&nbsp;&nbsp;<a href='#'>Login</a>
+          </p>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>

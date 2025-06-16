@@ -1,0 +1,17 @@
+<div class="dashboard-wrapper">
+    <h2 class="dashboard-heading">Welcome to ManageX</h2>
+    <div class="dashboard-grid">
+
+        <p-card *ngFor="let stat of stats" [styleClass]="'dashboard-card ' + stat.color">
+            <div class="flex items-center gap-4">
+                <span class="icon-circle" [ngClass]="stat.iconColor">
+                    <i class="{{ stat.icon }} text-2xl"></i>
+                </span>
+                <div>
+                    <h3 class="text-lg font-medium text-gray-700">{{ stat.title }}</h3>
+                    <p class="text-2xl font-bold text-gray-900">{{ stat.count }}</p>
+                </div>
+            </div>
+        </p-card>
+    </div>
+</div>

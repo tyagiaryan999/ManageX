@@ -1,0 +1,73 @@
+.container-fluid {
+  height: calc(100vh - 50px);
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  justify-content: space-between !important;
+}
+
+
+.main-section-row {
+  width: 50%;
+  height: 500px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+  background-color: #fff;
+  margin: auto !important;
+  position: relative;
+  top: 10% !important;
+  /* bottom: 5% !important; */
+  border-radius: 8px;
+}
+
+.form-row {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 1rem;
+}
+
+.form-row label {
+  width: 150px;
+  font-weight: 500;
+  padding-top: 0.5rem;
+}
+
+.form-row input,
+.form-row select,
+.form-row textarea {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  height: auto;
+  box-sizing: border-box;
+}
+
+.form-row .p-autoComplete {
+  flex: 1;
+}
+
+.form-row textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.button-row {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+  margin-left: 10rem;
+}
+
+button {
+  padding: 0.65rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.Invalid {
+  border: 1px solid red !important;
+  box-shadow: 0 0 3px red;
+}

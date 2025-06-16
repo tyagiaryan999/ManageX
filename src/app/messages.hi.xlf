@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" target-language="hi" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="login-heading" datatype="html">
+        <source>Welcome!</source>
+        <target>स्वागत है!</target>
+      </trans-unit>
+      <trans-unit id="lang-label" datatype="html">
+        <source>Language:</source>
+        <target>भाषा:</target>
+      </trans-unit>
+      <trans-unit id="login-button" datatype="html">
+        <source>Log in</source>
+        <target>लॉग इन करें</target>
+      </trans-unit>
+      <trans-unit id="register-link" datatype="html">
+        <source>No Account</source>
+        <target>कोई खाता नहीं</target>
+      </trans-unit>
+      <trans-unit id="register-link-2" datatype="html">
+        <source>Register</source>
+        <target>रजिस्टर करें</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

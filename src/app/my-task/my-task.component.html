@@ -1,0 +1,41 @@
+<div class="task-container">
+    <h2 class="section-title">📋 Your Tasks</h2>
+
+    <div class="task-grid">
+        <p-card *ngFor="let task of tasks" [header]="task.taskname" styleClass="task-card">
+            <ng-template pTemplate="subtitle">
+                <div class="task-meta">
+                    <span class="task-id">🆔 Task ID: {{ task.task_id }}</span>
+                </div>
+            </ng-template>
+
+            <p class="task-desc">📝 Task Name: {{ task.task_name }}</p>
+            <p class="task-desc">📝 Description: {{ task.work_description }}</p>
+            <div class="task-footer">
+                <span class="due-date">📅 Due-Date: {{ task.dueDate | date }}</span>
+
+                <div class="startButton" *ngIf="task.work_status == 0" style="cursor: pointer;"
+                    (click)=" startbutton(task.task_id)">🚀
+                    Start
+                    <!-- <div class="buttonborder">Start</div> -->
+                </div>
+                <!-- Status Badge based on work_status -->
+                <span class="status-badge" [ngClass]="{
+                    'status-new': task.work_status === '0' || task.work_status === 0,
+                    'status-pending': task.work_status === '1' || task.work_status === 1,
+                    'status-done': task.work_status === '2' || task.work_status === 2
+                }">
+                    {{
+                    task.work_status === '0' || task.work_status === 0
+                    ? '🆕 New'
+                    : task.work_status === '1' || task.work_status === 1
+                    ? '⏳ In Progress'
+                    : '✅ Completed'
+                    }}
+                </span>
+            </div>
+
+
+        </p-card>
+    </div>
+</div>
