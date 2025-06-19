@@ -5,12 +5,24 @@ import { TableModule } from 'primeng/table';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { AccordionModule } from 'primeng/accordion';
+import { KeyValue } from '@angular/common';
+import { TitleCasePipe } from '@angular/common';
+
 @Component({
   selector: 'app-task-list',
-  imports: [CommonModule, RouterModule, TableModule, RouterLink, ButtonModule],
+  imports: [
+    CommonModule,
+    RouterModule,
+    TableModule,
+    RouterLink,
+    ButtonModule,
+    AccordionModule,
+  ],
   templateUrl: './task-list.component.html',
 
   styleUrl: './task-list.component.css',
+  providers: [TitleCasePipe],
 })
 export class TaskListComponent implements OnInit {
   taskData: any[] = [];
@@ -21,11 +33,16 @@ export class TaskListComponent implements OnInit {
   loginDetailsData: any;
   loggedInUseremail: any;
   isdelete: number = 0;
+  activePanels: number[] = [0];
+  showtable: boolean = true;
+  // groupedData: any;
+  groupedData: { [key: string]: any[] } = {};
 
   constructor(
     public ser: ServiceService,
     private router: Router,
-    private ngxLoader: NgxUiLoaderService
+    private ngxLoader: NgxUiLoaderService,
+    private TitleCasePipe: TitleCasePipe
   ) {}
 
   ngOnInit() {
@@ -50,12 +67,13 @@ export class TaskListComponent implements OnInit {
       limit,
     };
 
-    this.loading = true;
+    // this.loading = true;
     this.ngxLoader.start();
     this.ser.getTask(payload).subscribe((res: any) => {
       this.taskData = res.data;
       this.totalRecords = res.totalRecords;
-      this.loading = false;
+      this.groupedData = res.grouped || {};
+      // this.loading = false;
       this.ngxLoader.stop();
     });
   }
@@ -71,7 +89,23 @@ export class TaskListComponent implements OnInit {
       this.loadTasksLazy({ first: 0, rows: this.rows }); // reload first page
     });
   }
-
+  getTaskSatus(status: number): string {
+    switch (status) {
+      case 0:
+        return 'Not Started';
+      case 1:
+        return 'In Progress';
+      case 2:
+        return 'Completed';
+      default:
+        return 'Unknown';
+    }
+  }
+  accordianHead(category: KeyValue<string, any[]>): string {
+    return `${this.TitleCasePipe.transform(category.key)} [${
+      category.value.length
+    }]`;
+  }
   navigateToEdit(task: any) {
     this.router.navigate(['home/tasklist/edit', task.task_id]);
   }

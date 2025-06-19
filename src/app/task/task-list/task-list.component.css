@@ -23,8 +23,7 @@
 }
 
 .table-row td {
-  /* border: 1px solid red !important; */
-  /* margin: 0 !important; */
+
   padding: 0 !important;
 
 }
@@ -32,6 +31,31 @@
 ::ng-deep tr,
 td,
 th {
-  /* height: 50px !important; */
+
   text-align: center !important;
+}
+
+@media (max-width: 768px) {
+  ::ng-deep table {
+    width: 100% !important;
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .btn-white {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  ::ng-deep th,
+  ::ng-deep td {
+    font-size: 0.85rem !important;
+    padding: 0.5rem 0.25rem !important;
+  }
+
+  ::ng-deep .p-paginator {
+    justify-content: center !important;
+    padding: 0.5rem;
+  }
 }

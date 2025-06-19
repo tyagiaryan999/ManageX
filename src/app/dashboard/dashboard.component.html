@@ -211,7 +211,7 @@
 
                     <div *ngIf="showDatePickerForUser === user.email">
                       <p-calendar [(ngModel)]="selectedDate" (onSelect)="onDateSelected(user)" [showIcon]="true"
-                        placeholder="Select Date">
+                        placeholder="Select Date" [appendTo]="'body'">
                       </p-calendar>
                       <button (click)="cancelDateSelection()">Cancel</button>
                     </div>
@@ -305,4 +305,6 @@
         [rowsPerPageOptions]="[10, 20, 30]" styleClass="custom-table" />
     </div>
   </div>
+
+
 </div>

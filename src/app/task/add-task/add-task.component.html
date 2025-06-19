@@ -1,42 +1,60 @@
 <p-toast></p-toast>
 <div class="container-fluid m-0 p-0 bg-light">
     <div class="row main-section-row">
+
         <form [formGroup]="taskFormGroup" class="form-container" (ngSubmit)="submitTask()">
             <div class="form-row">
-                <label for="name">Task Name <span class="text-danger">*</span> : </label>
-                <input type="text" id="taskname" placeholder="Enter Task Name" pInputText formControlName="taskname"
-                    [ngClass]="{'Invalid': isFieldInvalid('taskname')}" />
+                <div class="col-2">
+                    <label for="name">Task Name <span class="text-danger">*</span> : </label>
+                </div>
+                <div class="col-10">
+                    <input type="text" id="taskname" placeholder="Enter Task Name" pInputText formControlName="taskname"
+                        [ngClass]="{'Invalid': isFieldInvalid('taskname')}" [style]="{width:'100%'}" />
+                </div>
             </div>
-
             <div class="form-row">
-                <label for="assignedFor">Assigned To</label>
-                <p-autoComplete formControlName="assignto" [dropdown]="true" [suggestions]="filterednames"
-                    (completeMethod)="filterNames($event)" optionLabel="user_name"
-                    [ngClass]="{'Invalid': isFieldInvalid('assignto')}">
-                </p-autoComplete>
+                <div class="col-2">
+                    <label for="assignedFor">Assigned To</label>
+                </div>
+                <div class="col-10">
+                    <p-autoComplete formControlName="assignto" [dropdown]="true" [suggestions]="filterednames"
+                        (completeMethod)="filterNames($event)" optionLabel="user_name"
+                        [ngClass]="{'Invalid': isFieldInvalid('assignto')}" [style]="{width:'100%'}">
+                    </p-autoComplete>
+                </div>
             </div>
-
             <div class="form-row">
-                <label for="category">Category</label>
-                <select id="category" formControlName="category" [ngClass]="{'Invalid': isFieldInvalid('category')}">
-                    <option value="" disabled>Select a category</option>
-                    <option *ngFor="let i of taskCategories" [ngValue]="i">{{ i.name }} </option>
-                </select>
-            </div>
+                <div class="col-2">
+                    <label for="category">Category</label>
+                </div>
+                <div class="col-10">
+                    <select id="category" formControlName="category" [ngClass]="{'Invalid': isFieldInvalid('category')}"
+                        [style]="{width:'100%'}">
+                        <option value="" disabled>Select a category</option>
+                        <option *ngFor="let i of taskCategories" [ngValue]="i">{{ i.name }} </option>
+                    </select>
+                </div>
 
+            </div>
             <div class="form-row">
-                <label for="dueDate">Due Date</label>
-                <input type="date" id="dueDate" placeholder="Select Due Date" formControlName="duedate"
-                    [ngClass]="{'Invalid': isFieldInvalid('duedate')}" />
+                <div class="col-2">
+                    <label for="dueDate">Due Date</label>
+                </div>
+                <div class="col-10">
+                    <input type="date" id="dueDate" placeholder="Select Due Date" formControlName="duedate"
+                        [ngClass]="{'Invalid': isFieldInvalid('duedate')}" [style]="{width:'100%'}" />
+                </div>
             </div>
-
             <div class="form-row">
-                <label for="Instructions">Description</label>
-                <textarea id="Instructions" placeholder="Write any instructions here..." rows="3"
-                    formControlName="description" pInputTextarea
-                    [ngClass]="{'Invalid': isFieldInvalid('description')}"></textarea>
+                <div class="col-2">
+                    <label for="Instructions">Description</label>
+                </div>
+                <div class="col-10">
+                    <textarea id="Instructions" placeholder="Write any instructions here..." rows="3"
+                        formControlName="description" pInputTextarea
+                        [ngClass]="{'Invalid': isFieldInvalid('description')}" [style]="{width:'100%'}"></textarea>
+                </div>
             </div>
-
             <div class="button-row">
                 <button class="btn btn-outline-secondary" type="button" (click)="goBackToList()">Back to Task
                     List</button>

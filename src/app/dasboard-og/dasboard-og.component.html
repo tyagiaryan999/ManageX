@@ -1,7 +1,6 @@
 <div class="dashboard-wrapper">
     <h2 class="dashboard-heading">Welcome to ManageX</h2>
     <div class="dashboard-grid">
-
         <p-card *ngFor="let stat of stats" [styleClass]="'dashboard-card ' + stat.color">
             <div class="flex items-center gap-4">
                 <span class="icon-circle" [ngClass]="stat.iconColor">

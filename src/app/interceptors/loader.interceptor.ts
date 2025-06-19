@@ -42,7 +42,7 @@ export class LoaderInterceptor implements HttpInterceptor {
     const payload = {
       email,
       url: req.urlWithParams,
-      time: new Date().toISOString().split('T')[0],
+      Date: new Date().toISOString().split('T')[0],
     };
 
     const ser = this.injector.get(ServiceService);

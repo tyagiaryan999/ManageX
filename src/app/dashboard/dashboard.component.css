@@ -486,6 +486,16 @@ tr {
   border-width: 0;
   text-align: center !important;
   padding: 0 !important;
+
+}
+
+tbody,
+th,
+thead {
+  border-color: inherit;
+  border-style: solid;
+  border-width: 0;
+  height: 2rem !important;
 }
 
 /* ::ng-deep .add-button .p-button {
@@ -519,6 +529,9 @@ tr {
 }
 
 
-.p-table-wrapper {
+/* .p-table-wrapper {
   overflow-y: visible !important;
+} */
+::ng-deep .p-datatable>.p-datatable-wrapper {
+  overflow: hidden;
 }

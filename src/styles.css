@@ -46,3 +46,13 @@ body {
     transform: translate(-50%, -50%);
     z-index: 9999;
 }
+
+.p-datepicker {
+    z-index: 9999 !important;
+}
+
+.p-accordion .p-accordion-header .p-accordion-header-link {
+    color: black !important;
+    text-decoration: none;
+    /* text-decoration: underline; */
+}

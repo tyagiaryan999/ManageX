@@ -142,25 +142,28 @@ export class AddTaskComponent {
         email: this.loggedInUseremail,
         createdAt: new Date(),
       };
+      console.log('Submit Task Data Payload', payload);
       console.log('localstorage Emaillll', this.loginDetailsData.email);
-      this.NgxUiLoader.start();
-      this.ser.addTask(payload).subscribe((res: any) => {
-        //this.taskData = res.message;
-        console.log('TaskData', res.message);
 
-        if (res.message === 'Duplicate task') {
+      this.ser.addTask(payload).subscribe((res: any) => {
+        if (res.type == 'duplicate') {
           this.messageService.add({
             severity: 'error',
             summary: 'Error',
             detail: 'Task Already exist ',
           });
-          this.NgxUiLoader.stop();
-        } else {
-          console.log('submit Task Data', this.taskData);
-          // this.router.navigate(['../'], { relativeTo: this.route });
-
-          this.router.navigate(['/home/tasklist'], { relativeTo: this.route });
-          this.NgxUiLoader.stop();
+        }
+        if (res.type == 'success') {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Successs',
+            detail: 'Task Added succesfull ',
+          });
+          setTimeout(() => {
+            this.router.navigate(['/home/tasklist'], {
+              relativeTo: this.route,
+            });
+          }, 1000);
         }
       });
     } else {
@@ -172,6 +175,7 @@ export class AddTaskComponent {
       });
     }
   }
+
   isFieldInvalid(fieldName: string): boolean {
     const control = this.taskFormGroup.get(fieldName);
     return !!(control && control.invalid && (control.dirty || control.touched));

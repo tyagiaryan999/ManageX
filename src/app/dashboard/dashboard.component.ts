@@ -28,6 +28,10 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { jsPDF } from 'jspdf';
 
 import { CalendarModule } from 'primeng/calendar';
+import { AccordionModule } from 'primeng/accordion';
+import { AvatarModule } from 'primeng/avatar';
+import { BadgeModule } from 'primeng/badge';
+import { AccordionTab } from 'primeng/accordion';
 // interface PageEvent {
 //   first: number;
 //   rows: number;
@@ -60,6 +64,9 @@ import { CalendarModule } from 'primeng/calendar';
     PaginatorModule,
     FormsModule,
     CalendarModule,
+    AccordionModule,
+    AvatarModule,
+    BadgeModule,
   ],
   styleUrls: ['./dashboard.component.css'],
   providers: [ServiceService, MessageService, ConfirmationService],
@@ -101,7 +108,7 @@ export class DashboardComponent implements OnInit {
   selectedDate: Date | null = null;
   showDatePickerForUser: string | null = null;
   userActivityData: any;
-
+  activePanels: number[] = [0];
   constructor(
     public ser: ServiceService,
     public router: Router,
@@ -459,7 +466,7 @@ export class DashboardComponent implements OnInit {
     this.ser.userActivityInfo(payload).subscribe((res: any) => {
       // alert('UserActivity Works');
       this.userActivityData = res.data;
-
+      console.log('userActivityInfo  Response ', this.userActivityData);
       if (!this.userActivityData || this.userActivityData.length === 0) {
         const doc = new jsPDF();
         doc.setFontSize(14);

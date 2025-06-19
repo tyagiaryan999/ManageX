@@ -9,10 +9,16 @@ import { AutoCompleteCompleteEvent } from 'primeng/autocomplete';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Validators } from '@angular/forms';
-
+import { ToastModule } from 'primeng/toast';
 @Component({
   selector: 'app-edit-task',
-  imports: [CommonModule, ReactiveFormsModule, FormsModule, AutoCompleteModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    FormsModule,
+    AutoCompleteModule,
+    ToastModule,
+  ],
   templateUrl: './edit-task.component.html',
   styleUrl: './edit-task.component.css',
 })
@@ -92,25 +98,37 @@ export class EditTaskComponent implements OnInit {
   ngOnInit() {
     this.getLocalStorageDetails();
     // this.taskId = this.route.snapshot.paramMap.get('task_id');
-    this.getTaskId();
     this.taskForm();
+    this.getTaskId();
   }
 
   getTaskId() {
     this.route.paramMap.subscribe((params) => {
       this.taskId = params.get('task_id');
       console.log('ParamMap data ', this.taskId);
+
+      this.ser.getTaskById(this.taskId).subscribe((res: any) => {
+        console.log('getTaskById response', res.data);
+        if (res.data) {
+          this.patchFormData(res.data[0]);
+        }
+      });
     });
   }
 
   patchFormData(data: any) {
+    debugger;
     this.taskFormGroup.patchValue({
       taskname: data.task_name,
-      assignto: data.assignedTo,
       category: data.category,
       duedate: data.duedate,
       description: data.work_description,
     });
+    if (data.assignedTo) {
+      this.taskFormGroup.patchValue({
+        assignto: { id: data.assignedTo, user_name: data.assignedToUser },
+      });
+    }
   }
 
   taskForm() {
@@ -123,16 +141,23 @@ export class EditTaskComponent implements OnInit {
     });
   }
   updateTask() {
-    debugger;
-    const payload = {
-      ...this.taskFormGroup.value,
-      id: this.taskId,
-    };
-    this.ser.updateTask(payload).subscribe((res: any) => {
-      this.updateData = res.data;
-      console.log('Update Data', this.updateData);
-      this.router.navigate(['../../'], { relativeTo: this.route });
-    });
+    {
+      const payload = {
+        ...this.taskFormGroup.value,
+        id: this.taskId,
+      };
+      console.log('Upadate Payload', payload);
+
+      this.ser.updateTask(payload).subscribe((res: any) => {
+        this.updateData = res.data;
+        console.log('Update Data', this.updateData);
+        this.router.navigate(['../../'], { relativeTo: this.route });
+      });
+    }
+  }
+  isFieldInvalid(fieldName: string): boolean {
+    const control = this.taskFormGroup.get(fieldName);
+    return !!(control && control.invalid && (control.dirty || control.touched));
   }
 
   getLocalStorageDetails() {
@@ -143,5 +168,19 @@ export class EditTaskComponent implements OnInit {
   goBackToList() {
     this.router.navigate(['../../'], { relativeTo: this.route });
     // this.router.navigate(['/tasks']);
+  }
+  filterNames(event: AutoCompleteCompleteEvent) {
+    // let filtered: any[] = [];
+
+    const payload = {
+      name: event.query,
+      email: this.loginDetailsData.email,
+    };
+    console.log('Local Storage', this.loginDetailsData.email);
+
+    this.ser.getAllUser(payload).subscribe((res: any) => {
+      this.filterednames = res.data.records || [];
+      console.log('Autocomplete data', this.filterednames);
+    });
   }
 }

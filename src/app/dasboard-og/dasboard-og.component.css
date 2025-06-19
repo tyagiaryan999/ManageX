@@ -1,8 +1,10 @@
 .dashboard-wrapper {
     /* background: linear-gradient(to bottom right, #eef2ff, #dde5f0); */
-    min-height: 100vh;
+    min-height: 93vh;
     padding: 2rem;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(rgba(200, 200, 200, 0.3), rgba(100, 100, 100, 0.3));
+
 }
 
 /* Card container */
@@ -55,40 +57,6 @@
     color: #0f172a;
 }
 
-/* Different color themes
-.bg-blue {
-    border-left-color: #3b82f6;
-}
-
-.bg-green {
-    border-left-color: #10b981;
-}
-
-.bg-yellow {
-    border-left-color: #facc15;
-}
-
-.bg-red {
-    border-left-color: #ef4444;
-}
-
-/* Icon backgrounds (same as borders) */
-/* .icon-blue {
-    background: linear-gradient(to top left, #60a5fa, #3b82f6);
-}
-
-.icon-green {
-    background: linear-gradient(to top left, #6ee7b7, #10b981);
-}
-
-.icon-yellow {
-    background: linear-gradient(to top left, #fde68a, #facc15);
-    color: #92400e;
-}
-
-.icon-red {
-    background: linear-gradient(to top left, #fca5a5, #ef4444);
-} */
 .bg-blue {
     border-left: 6px solid #3b82f6;
 }
@@ -131,7 +99,7 @@
 }
 
 .icon-gray {
-    background: #f3f4f6;
+    background: #e6e6e6;
 
     color: #6b7280;
 

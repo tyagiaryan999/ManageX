@@ -68,7 +68,7 @@ export class UserLoginComponent {
       // this.showOtpDialog = false;
     }
   }
-  //onlogin(){
+
   // this.dataSer.loginUser(this.userlogin.value).subscribe((data: any) => {
   //   console.log('Login API response:', data);
   //   console.log('loginValues', this.userlogin.value);
@@ -107,7 +107,6 @@ export class UserLoginComponent {
   //     });
   //   }
   // });
-  //}
   onlogin() {
     if (this.userlogin.valid) {
       this.dataSer.loginUser(this.userlogin.value).subscribe({
@@ -118,7 +117,6 @@ export class UserLoginComponent {
             email: data.data.email,
             id: data.data.id,
           };
-
           localStorage.setItem('user', JSON.stringify(user));
           this.showOtpDialog = true;
 
@@ -141,7 +139,7 @@ export class UserLoginComponent {
       this.messageService.add({
         severity: 'error',
         summary: 'Error',
-        detail: 'Incorect Email or Password ',
+        detail: 'All Fields Required ',
       });
     }
   }

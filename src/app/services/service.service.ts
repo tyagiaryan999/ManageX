@@ -126,6 +126,11 @@ export class ServiceService {
       payload
     );
   }
+  getTaskById(id: any) {
+    return this.http.post<any>(`${env.baseUrl}/taskServices/getTaskById`, {
+      id,
+    });
+  }
   otpMail(payload: any) {
     return this.http.post<any>(`${env.baseUrl}/mailServices/otpMail`, payload);
   }
